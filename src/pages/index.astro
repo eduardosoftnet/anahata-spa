@@ -1,0 +1,102 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+---
+
+<Layout title="Anahata Spa | Bienestar y Relajación">
+    <main>
+        <!-- Hero Section -->
+        <section
+            class="relative h-screen flex items-center justify-center overflow-hidden"
+        >
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <div class="absolute inset-0 bg-stone-900/30 z-10"></div>
+                <Image
+                    src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2"
+                    alt="Ambiente de Spa Relajante"
+                    width={2070}
+                    height={1380}
+                    class="w-full h-full object-cover"
+                    loading="eager"
+                    fetchpriority="high"
+                />
+            </div>
+
+            <div class="relative z-20 text-center text-white px-4">
+                <h1
+                    class="text-5xl md:text-7xl font-bold mb-6 tracking-wide drop-shadow-lg"
+                >
+                    Anahata Spa
+                </h1>
+                <p
+                    class="text-xl md:text-2xl mb-8 font-light max-w-2xl mx-auto drop-shadow-md"
+                >
+                    Tu santuario de paz y renovación personal.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a
+                        href="#servicios"
+                        class="bg-teal-700 hover:bg-teal-600 text-white font-semibold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg backdrop-blur-sm bg-opacity-90"
+                    >
+                        Nuestros Servicios
+                    </a>
+                    <a
+                        href="#contacto"
+                        class="bg-white/10 hover:bg-white/20 text-white border border-white/50 font-semibold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg backdrop-blur-sm"
+                    >
+                        Contáctanos
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brief Intro -->
+        <section
+            id="servicios"
+            class="py-20 px-6 max-w-6xl mx-auto text-center"
+        >
+            <h2 class="text-4xl font-bold text-teal-800 mb-6">
+                Bienvenido a Anahata
+            </h2>
+            <p
+                class="text-lg text-stone-600 leading-relaxed max-w-3xl mx-auto mb-12"
+            >
+                En el corazón de la ciudad, un refugio diseñado para armonizar
+                tu cuerpo y mente. Nuestros tratamientos están inspirados en
+                técnicas ancestrales para devolverte el equilibrio que mereces.
+            </p>
+
+            <!-- Services Grid Preview (Placeholder) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {
+                    [
+                        {
+                            title: "Masajes Relajantes",
+                            desc: "Técnicas suecas y de tejido profundo para aliviar la tensión.",
+                            icon: "💆‍♀️",
+                        },
+                        {
+                            title: "Faciales Rejuvenecedores",
+                            desc: "Tratamientos personalizados para iluminar y nutrir tu piel.",
+                            icon: "✨",
+                        },
+                        {
+                            title: "Hidroterapia",
+                            desc: "Circuitos de agua para revitalizar cuerpo y mente.",
+                            icon: "💧",
+                        },
+                    ].map((service) => (
+                        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-stone-100">
+                            <div class="text-4xl mb-4">{service.icon}</div>
+                            <h3 class="text-xl font-bold text-stone-800 mb-2">
+                                {service.title}
+                            </h3>
+                            <p class="text-stone-600">{service.desc}</p>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+    </main>
+</Layout>
