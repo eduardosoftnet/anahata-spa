@@ -71,27 +71,27 @@
     <!-- Mobile Menu -->
     <div
         id="mobile-menu"
-        class="hidden md:hidden bg-stone-900/95 backdrop-blur-xl border-t border-white/10"
+        class="md:hidden bg-white/30 backdrop-blur-xl border-t border-white/20 overflow-hidden max-h-0 opacity-0 invisible transition-all duration-500 ease-in-out"
     >
         <div class="px-4 pt-4 pb-8 space-y-4 flex flex-col items-center">
             <a
                 href="#inicio"
-                class="text-stone-100 hover:text-white block px-3 py-2 text-lg font-medium uppercase tracking-wide"
+                class="text-stone-100 hover:text-white block px-3 py-2 text-lg font-medium uppercase tracking-wide transition-colors"
                 >Inicio</a
             >
             <a
                 href="#servicios"
-                class="text-stone-100 hover:text-white block px-3 py-2 text-lg font-medium uppercase tracking-wide"
+                class="text-stone-100 hover:text-white block px-3 py-2 text-lg font-medium uppercase tracking-wide transition-colors"
                 >Servicios</a
             >
             <a
                 href="#nosotros"
-                class="text-stone-100 hover:text-white block px-3 py-2 text-lg font-medium uppercase tracking-wide"
+                class="text-stone-100 hover:text-white block px-3 py-2 text-lg font-medium uppercase tracking-wide transition-colors"
                 >Nosotros</a
             >
             <a
                 href="#contacto"
-                class="bg-teal-700 w-full text-center hover:bg-teal-600 text-white px-6 py-3 rounded-full text-base font-medium transition shadow-lg mt-4"
+                class="bg-teal-700 hover:bg-teal-600 text-white px-8 py-3 rounded-full text-base font-medium transition shadow-lg mt-4"
                 >Reservar Cita</a
             >
         </div>
@@ -106,14 +106,25 @@
         btn.addEventListener("click", () => {
             const isExpanded = btn.getAttribute("aria-expanded") === "true";
             btn.setAttribute("aria-expanded", String(!isExpanded));
-            menu.classList.toggle("hidden");
+
+            // Toggle classes for animation
+            if (!isExpanded) {
+                // Open menu
+                menu.classList.remove("max-h-0", "opacity-0", "invisible");
+                menu.classList.add("max-h-96", "opacity-100", "visible");
+            } else {
+                // Close menu
+                menu.classList.add("max-h-0", "opacity-0", "invisible");
+                menu.classList.remove("max-h-96", "opacity-100", "visible");
+            }
         });
 
         // Close menu when clicking a link
         const links = menu.querySelectorAll("a");
         links.forEach((link) => {
             link.addEventListener("click", () => {
-                menu.classList.add("hidden");
+                menu.classList.add("max-h-0", "opacity-0", "invisible");
+                menu.classList.remove("max-h-96", "opacity-100", "visible");
                 btn.setAttribute("aria-expanded", "false");
             });
         });
