@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import heroBg from "../assets/images/hero-bg.jpg";
+import aboutUsImg from "../assets/images/about-us.jpg";
 ---
 
 <Layout title="Anahata Spa | Bienestar y Relajación">
@@ -103,6 +104,81 @@ import heroBg from "../assets/images/hero-bg.jpg";
                         </div>
                     ))
                 }
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="nosotros" class="py-24 bg-stone-50">
+            <div class="max-w-6xl mx-auto px-6">
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center"
+                >
+                    <!-- Image Side -->
+                    <div class="relative group">
+                        <div
+                            class="absolute -inset-4 bg-teal-800/10 rounded-3xl transform -rotate-3 transition duration-500 group-hover:rotate-0"
+                        >
+                        </div>
+                        <Image
+                            src={aboutUsImg}
+                            alt="Interior de Anahata Spa"
+                            width={800}
+                            height={1000}
+                            class="relative rounded-2xl shadow-xl w-full object-cover h-[500px]"
+                        />
+                    </div>
+
+                    <!-- Text Side -->
+                    <div>
+                        <h2
+                            class="text-4xl md:text-5xl font-bold text-stone-800 mb-8 font-serif"
+                        >
+                            Nuestra Esencia
+                        </h2>
+                        <div class="space-y-6 text-lg text-stone-600">
+                            <p>
+                                En <span class="text-teal-700 font-semibold"
+                                    >Anahata Spa</span
+                                >, creemos que la verdadera belleza nace de la
+                                armonía interior. Nuestro nombre, inspirado en
+                                el chakra del corazón, refleja nuestra misión:
+                                crear un espacio donde el amor propio y el
+                                cuidado experto se encuentran.
+                            </p>
+                            <p>
+                                Cada terapeuta en nuestro equipo es un artesano
+                                del bienestar, dedicado a personalizar tu
+                                experiencia para asegurar que salgas renovado no
+                                solo físicamente, sino también espiritualmente.
+                            </p>
+                        </div>
+
+                        <div
+                            class="mt-10 grid grid-cols-2 gap-8 border-t border-stone-200 pt-8"
+                        >
+                            <div>
+                                <h4
+                                    class="text-4xl font-bold text-teal-800 mb-2"
+                                >
+                                    +10
+                                </h4>
+                                <p class="text-stone-500 uppercase text-sm">
+                                    Años de Experiencia
+                                </p>
+                            </div>
+                            <div>
+                                <h4
+                                    class="text-4xl font-bold text-teal-800 mb-2"
+                                >
+                                    100%
+                                </h4>
+                                <p class="text-stone-500 uppercase text-sm">
+                                    Clientes Satisfechos
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
