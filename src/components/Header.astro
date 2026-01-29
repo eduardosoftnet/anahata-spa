@@ -6,19 +6,11 @@
     class="fixed w-full z-50 transition-all duration-300 bg-gradient-to-b from-black/60 to-transparent backdrop-blur-[2px]"
 >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-24">
-            <!-- Logo -->
-            <div class="flex-shrink-0 flex items-center">
-                <a
-                    href="/"
-                    class="text-white text-3xl font-bold tracking-widest font-serif drop-shadow-md"
-                >
-                    ANAHATA
-                </a>
-            </div>
+        <div class="flex justify-center items-center h-24 relative">
+            <!-- Logo Removed -->
 
-            <!-- Desktop Menu -->
-            <nav class="hidden md:flex space-x-8 items-center">
+            <!-- Desktop Menu Centered -->
+            <nav class="hidden md:flex space-x-12 items-center">
                 <a
                     href="/#inicio"
                     class="group relative text-stone-100 hover:text-white transition px-1 py-2 text-sm font-medium uppercase tracking-wide drop-shadow-sm"
@@ -53,12 +45,12 @@
                 >
             </nav>
 
-            <!-- Mobile menu button -->
-            <div class="md:hidden flex items-center">
+            <!-- Mobile menu button (absolute positioned to top right) -->
+            <div class="md:hidden absolute top-6 right-6">
                 <button
                     type="button"
                     id="mobile-menu-btn"
-                    class="text-stone-100 hover:text-white focus:outline-none p-2"
+                    class="text-stone-100 hover:text-white focus:outline-none p-2 bg-black/20 rounded-full backdrop-blur-sm"
                     aria-expanded="false"
                     aria-controls="mobile-menu"
                 >
