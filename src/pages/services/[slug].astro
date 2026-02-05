@@ -49,6 +49,29 @@ const { service } = Astro.props;
                                 {service.longDesc}
                             </p>
 
+                            {
+                                service.subServices &&
+                                    service.subServices.length > 0 && (
+                                        <div class="mb-8">
+                                            <h3 class="text-xl font-bold text-teal-800 mb-4 font-serif">
+                                                Tratamientos Disponibles:
+                                            </h3>
+                                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                                {service.subServices.map(
+                                                    (subService) => (
+                                                        <li class="flex items-center text-stone-700">
+                                                            <span class="text-teal-600 mr-2">
+                                                                ✦
+                                                            </span>
+                                                            {subService}
+                                                        </li>
+                                                    ),
+                                                )}
+                                            </ul>
+                                        </div>
+                                    )
+                            }
+
                             <div class="flex flex-wrap gap-4">
                                 <a
                                     href="/#contacto"
