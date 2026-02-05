@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+
+// Import all images from the partners folder
+// Updated partners list - Added Marant
+// This will automatically find any image placed in src/assets/partners
+const partnerFiles = import.meta.glob(
+    "../assets/partners/*.{svg,png,jpg,jpeg,webp}",
+    { eager: true },
+);
+const partners = Object.values(partnerFiles).map((file: any) => file.default);
+---
+
+{
+    partners.length > 0 && (
+        <section class="py-10 bg-stone-50/50">
+            <div class="max-w-6xl mx-auto px-6">
+                <h3 class="text-sm md:text-base font-serif text-center text-stone-400 mb-4 uppercase tracking-[0.2em]">
+                    Nuestros Socios
+                </h3>
+
+                <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
+                    {partners.map((logo) => (
+                        <div class="group relative flex justify-center items-center w-28 h-16 transition-transform duration-300 hover:scale-105">
+                            <Image
+                                src={logo}
+                                alt="Socio comercial"
+                                class="max-w-full max-h-full object-contain filter grayscale opacity-50 transition-all duration-500 ease-out group-hover:grayscale-0 group-hover:opacity-100"
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    )
+}
