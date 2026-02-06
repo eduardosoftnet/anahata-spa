@@ -117,7 +117,10 @@ const t = useTranslations(lang);
                 >{t("nav.about")}</a
             >
             <div class="py-2 scale-110">
-                <LanguagePicker theme="dark" />
+                <LanguagePicker
+                    translatedPaths={translatedPaths}
+                    theme="dark"
+                />
             </div>
             <a
                 href="https://wa.me/529992923345"
