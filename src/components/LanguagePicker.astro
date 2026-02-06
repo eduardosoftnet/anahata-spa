@@ -4,9 +4,10 @@ import { getLangFromUrl } from "../i18n/utils";
 
 interface Props {
     translatedPaths?: Record<string, string>;
+    theme?: "light" | "dark";
 }
 
-const { translatedPaths } = Astro.props;
+const { translatedPaths, theme = "light" } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 
 function getPathProps(locale: string) {
@@ -35,17 +36,22 @@ function getPathProps(locale: string) {
 }
 ---
 
-<div class="flex items-center space-x-2 text-sm font-medium">
+<div class="flex items-center space-x-1 text-sm font-medium">
     {
         Object.entries(languages).map(([label, name]) => (
             <a
                 href={getPathProps(label)}
                 class:list={[
-                    "transition-colors duration-200",
+                    "transition-colors duration-200 p-2 rounded-md",
                     label === lang
-                        ? "text-teal-700 font-bold"
-                        : "text-stone-500 hover:text-teal-600",
+                        ? theme === "dark"
+                            ? "text-white font-bold bg-white/10"
+                            : "text-teal-700 font-bold bg-teal-50"
+                        : theme === "dark"
+                          ? "text-stone-300 hover:text-white hover:bg-white/5"
+                          : "text-stone-500 hover:text-teal-600 hover:bg-stone-100",
                 ]}
+                aria-label={`Switch to ${name}`}
             >
                 {label.toUpperCase()}
             </a>

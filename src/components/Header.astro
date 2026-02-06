@@ -53,7 +53,10 @@ const t = useTranslations(lang);
                 </a>
 
                 <div class="px-2">
-                    <LanguagePicker translatedPaths={translatedPaths} />
+                    <LanguagePicker
+                        translatedPaths={translatedPaths}
+                        theme="dark"
+                    />
                 </div>
 
                 <a
@@ -113,8 +116,8 @@ const t = useTranslations(lang);
                 class="text-stone-100 hover:text-white block px-3 py-2 text-lg font-medium uppercase tracking-wide transition-colors"
                 >{t("nav.about")}</a
             >
-            <div class="py-2">
-                <LanguagePicker />
+            <div class="py-2 scale-110">
+                <LanguagePicker theme="dark" />
             </div>
             <a
                 href="https://wa.me/529992923345"
