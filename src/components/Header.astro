@@ -128,34 +128,36 @@ const t = useTranslations(lang);
 </header>
 
 <script>
-    const btn = document.getElementById("mobile-menu-btn");
-    const menu = document.getElementById("mobile-menu");
+    document.addEventListener("astro:page-load", () => {
+        const btn = document.getElementById("mobile-menu-btn");
+        const menu = document.getElementById("mobile-menu");
 
-    if (btn && menu) {
-        btn.addEventListener("click", () => {
-            const isExpanded = btn.getAttribute("aria-expanded") === "true";
-            btn.setAttribute("aria-expanded", String(!isExpanded));
+        if (btn && menu) {
+            btn.addEventListener("click", () => {
+                const isExpanded = btn.getAttribute("aria-expanded") === "true";
+                btn.setAttribute("aria-expanded", String(!isExpanded));
 
-            // Toggle classes for animation
-            if (!isExpanded) {
-                // Open menu
-                menu.classList.remove("max-h-0", "opacity-0", "invisible");
-                menu.classList.add("max-h-96", "opacity-100", "visible");
-            } else {
-                // Close menu
-                menu.classList.add("max-h-0", "opacity-0", "invisible");
-                menu.classList.remove("max-h-96", "opacity-100", "visible");
-            }
-        });
-
-        // Close menu when clicking a link
-        const links = menu.querySelectorAll("a");
-        links.forEach((link) => {
-            link.addEventListener("click", () => {
-                menu.classList.add("max-h-0", "opacity-0", "invisible");
-                menu.classList.remove("max-h-96", "opacity-100", "visible");
-                btn.setAttribute("aria-expanded", "false");
+                // Toggle classes for animation
+                if (!isExpanded) {
+                    // Open menu
+                    menu.classList.remove("max-h-0", "opacity-0", "invisible");
+                    menu.classList.add("max-h-96", "opacity-100", "visible");
+                } else {
+                    // Close menu
+                    menu.classList.add("max-h-0", "opacity-0", "invisible");
+                    menu.classList.remove("max-h-96", "opacity-100", "visible");
+                }
             });
-        });
-    }
+
+            // Close menu when clicking a link
+            const links = menu.querySelectorAll("a");
+            links.forEach((link) => {
+                link.addEventListener("click", () => {
+                    menu.classList.add("max-h-0", "opacity-0", "invisible");
+                    menu.classList.remove("max-h-96", "opacity-100", "visible");
+                    btn.setAttribute("aria-expanded", "false");
+                });
+            });
+        }
+    });
 </script>

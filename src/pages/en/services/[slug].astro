@@ -23,7 +23,7 @@ const { service } = Astro.props;
 // Find the corresponding Spanish service
 import { servicesEs } from "../../../data/services";
 const translatedService = servicesEs.find((s) => s.id === service.id);
-const translatedPaths = translatedService
+const translatedPaths: Record<string, string> = translatedService
     ? {
           es: `/services/${translatedService.slug}`,
       }
