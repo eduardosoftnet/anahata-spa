@@ -1,5 +1,18 @@
 ---
+import {
+    getLangFromUrl,
+    useTranslations,
+    getRelativeLocaleUrl,
+} from "../i18n/utils";
+import LanguagePicker from "./LanguagePicker.astro";
 
+interface Props {
+    translatedPaths?: Record<string, string>;
+}
+
+const { translatedPaths } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <header
@@ -10,40 +23,45 @@
             <!-- Logo Removed -->
 
             <!-- Desktop Menu Centered -->
-            <nav class="hidden md:flex space-x-12 items-center">
+            <nav class="hidden md:flex space-x-8 items-center">
                 <a
-                    href="/#inicio"
+                    href={getRelativeLocaleUrl(lang, "#inicio")}
                     class="group relative text-stone-100 hover:text-white transition px-1 py-2 text-sm font-medium uppercase tracking-wide drop-shadow-sm"
                 >
-                    Inicio
+                    {t("nav.home")}
                     <span
                         class="absolute bottom-0 left-0 w-0 h-0.5 bg-teal-400 transition-all duration-300 ease-out group-hover:w-full"
                     ></span>
                 </a>
                 <a
-                    href="/#servicios"
+                    href={getRelativeLocaleUrl(lang, "#servicios")}
                     class="group relative text-stone-100 hover:text-white transition px-1 py-2 text-sm font-medium uppercase tracking-wide drop-shadow-sm"
                 >
-                    Servicios
+                    {t("nav.services")}
                     <span
                         class="absolute bottom-0 left-0 w-0 h-0.5 bg-teal-400 transition-all duration-300 ease-out group-hover:w-full"
                     ></span>
                 </a>
                 <a
-                    href="/#nosotros"
+                    href={getRelativeLocaleUrl(lang, "#nosotros")}
                     class="group relative text-stone-100 hover:text-white transition px-1 py-2 text-sm font-medium uppercase tracking-wide drop-shadow-sm"
                 >
-                    Nosotros
+                    {t("nav.about")}
                     <span
                         class="absolute bottom-0 left-0 w-0 h-0.5 bg-teal-400 transition-all duration-300 ease-out group-hover:w-full"
                     ></span>
                 </a>
+
+                <div class="px-2">
+                    <LanguagePicker translatedPaths={translatedPaths} />
+                </div>
+
                 <a
                     href="https://wa.me/529992923345"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="bg-teal-700/90 hover:bg-teal-600 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 shadow-lg hover:shadow-teal-500/50 border border-teal-500/30 backdrop-blur-md hover:-translate-y-0.5 hover:scale-105"
-                    >Reservar Cita</a
+                    >{t("service.book")}</a
                 >
             </nav>
 
@@ -81,26 +99,29 @@
     >
         <div class="px-4 pt-4 pb-8 space-y-4 flex flex-col items-center">
             <a
-                href="/#inicio"
+                href={getRelativeLocaleUrl(lang, "#inicio")}
                 class="text-stone-100 hover:text-white block px-3 py-2 text-lg font-medium uppercase tracking-wide transition-colors"
-                >Inicio</a
+                >{t("nav.home")}</a
             >
             <a
-                href="/#servicios"
+                href={getRelativeLocaleUrl(lang, "#servicios")}
                 class="text-stone-100 hover:text-white block px-3 py-2 text-lg font-medium uppercase tracking-wide transition-colors"
-                >Servicios</a
+                >{t("nav.services")}</a
             >
             <a
-                href="/#nosotros"
+                href={getRelativeLocaleUrl(lang, "#nosotros")}
                 class="text-stone-100 hover:text-white block px-3 py-2 text-lg font-medium uppercase tracking-wide transition-colors"
-                >Nosotros</a
+                >{t("nav.about")}</a
             >
+            <div class="py-2">
+                <LanguagePicker />
+            </div>
             <a
                 href="https://wa.me/529992923345"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="bg-teal-700 hover:bg-teal-600 text-white px-8 py-3 rounded-full text-base font-medium transition shadow-lg mt-4"
-                >Reservar Cita</a
+                >{t("service.book")}</a
             >
         </div>
     </div>

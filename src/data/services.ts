@@ -8,7 +8,8 @@ export interface Service {
     subServices: string[];
 }
 
-export const services: Service[] = [
+
+export const servicesEs: Service[] = [
     {
         id: "1",
         slug: "masajes-relajantes",
@@ -67,3 +68,70 @@ export const services: Service[] = [
         ]
     },
 ];
+
+export const servicesEn: Service[] = [
+    {
+        id: "1",
+        slug: "relaxing-massages",
+        title: "Relaxing Massages",
+        shortDesc: "Swedish and deep tissue techniques to relieve tension.",
+        longDesc: "Immerse yourself in a state of absolute calm with our relaxing massages. We use a combination of gentle Swedish techniques and personalized deep tissue manipulations to release built-up tension in your muscles. This treatment not only relieves physical pain and improves circulation but also reduces stress and anxiety, promoting overall well-being. Ideal for disconnecting from the fast pace of daily life and reconnecting with yourself.",
+        icon: "💆‍♀️",
+        subServices: [
+            "Classic Swedish Massage",
+            "Deep Tissue Massage",
+            "Aromatherapy",
+            "Hot Stone Massage",
+            "Ayurvedic Massage"
+        ]
+    },
+    {
+        id: "2",
+        slug: "rejuvenating-facials",
+        title: "Rejuvenating Facials",
+        shortDesc: "Personalized treatments to illuminate and nourish your skin.",
+        longDesc: "restore your skin's natural glow with our rejuvenating facials. Each session begins with a detailed analysis of your skin type to select the most suitable products, rich in vitamins and antioxidants. Through deep cleansing techniques, gentle exfoliation, and stimulating massages, we eliminate impurities and promote cell regeneration. The result is visibly fresher, hydrated, and radiant skin with a smooth texture and even tone.",
+        icon: "✨",
+        subServices: [
+            "Deep Cleansing",
+            "Intensive Hydration",
+            "Anti-aging Treatment",
+            "Enzymatic Peeling"
+        ]
+    },
+    {
+        id: "3",
+        slug: "slimming-treatments",
+        title: "Slimming Treatments",
+        shortDesc: "Treatments focused on shaping your figure and reducing measurements with specialized techniques.",
+        longDesc: "Our slimming treatments are designed to help you sculpt your figure and reach your body goals. We combine vigorous manual massages with cutting-edge technology to target localized fat deposits and improve skin firmness. This comprehensive approach stimulates metabolism and favors the elimination of toxins, helping to reduce centimeters in key areas such as the abdomen, legs, and arms. A perfect complement to your healthy lifestyle.",
+        icon: "📏",
+        subServices: [
+            "Wood Therapy",
+            "Draining Massage",
+            "Cold Wraps",
+            "Cavitation"
+        ]
+    },
+    {
+        id: "4",
+        slug: "pressotherapy",
+        title: "Pressotherapy",
+        shortDesc: "Air pressure to stimulate blood circulation.",
+        longDesc: "Pressotherapy is a therapeutic and aesthetic treatment that uses controlled air pressure to perform a deep lymphatic drainage. By improving blood and lymphatic circulation, this treatment is excellent for combating fluid retention, relieving the feeling of tired legs, and reducing cellulite. It is a relaxing and painless experience that will leave you with a sensation of lightness and revitalizing well-being throughout your body.",
+        icon: "💨",
+        subServices: [
+            "Lymphatic Drainage",
+            "Tired Legs",
+            "Sports Recovery",
+            "Body Detox"
+        ]
+    },
+];
+
+export const getServices = (lang: 'es' | 'en') => {
+    return lang === 'en' ? servicesEn : servicesEs;
+}
+
+// Default export for backward compatibility
+export const services = servicesEs;

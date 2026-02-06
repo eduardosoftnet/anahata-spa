@@ -1,0 +1,54 @@
+---
+import { languages } from "../i18n/ui";
+import { getLangFromUrl } from "../i18n/utils";
+
+interface Props {
+    translatedPaths?: Record<string, string>;
+}
+
+const { translatedPaths } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+
+function getPathProps(locale: string) {
+    if (translatedPaths && translatedPaths[locale]) {
+        return translatedPaths[locale];
+    }
+
+    const currentPath = Astro.url.pathname;
+
+    // Logic to construct the new path
+    // If current is /es/foo -> /en/foo
+    // If current is /foo -> /en/foo (if default is es)
+    // If current is /en/foo -> /foo (if migrating to es default)
+
+    // Simplified logic relying on logic that 'es' is root for us
+    if (locale === "es") {
+        // Remove /en if present
+        return currentPath.replace(/^\/en/, "") || "/";
+    } else {
+        // Add /en if not present
+        if (currentPath.startsWith("/en")) return currentPath;
+        // If it's just slash, return /en/
+        if (currentPath === "/") return "/en/";
+        return `/en${currentPath}`;
+    }
+}
+---
+
+<div class="flex items-center space-x-2 text-sm font-medium">
+    {
+        Object.entries(languages).map(([label, name]) => (
+            <a
+                href={getPathProps(label)}
+                class:list={[
+                    "transition-colors duration-200",
+                    label === lang
+                        ? "text-teal-700 font-bold"
+                        : "text-stone-500 hover:text-teal-600",
+                ]}
+            >
+                {label.toUpperCase()}
+            </a>
+        ))
+    }
+</div>

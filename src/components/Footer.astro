@@ -1,5 +1,12 @@
 ---
+import {
+    getLangFromUrl,
+    useTranslations,
+    getRelativeLocaleUrl,
+} from "../i18n/utils";
 
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <footer class="bg-stone-900 text-stone-300 py-16 border-t border-teal-900/30">
@@ -12,8 +19,7 @@
                 >Anahata Beauty Spa</span
             >
             <p class="text-stone-400 leading-relaxed max-w-sm">
-                Tu refugio para el bienestar integral. Recupera tu equilibrio en
-                un entorno diseñado para la paz y la armonía interior.
+                {t("intro.desc")}
             </p>
             <div class="flex space-x-4 mt-6">
                 <a
@@ -60,21 +66,21 @@
             <h3
                 class="text-white font-semibold mb-6 uppercase tracking-wider text-sm text-teal-500"
             >
-                Enlaces
+                Links
             </h3>
             <ul class="space-y-3">
                 <li>
                     <a
-                        href="/#inicio"
+                        href={getRelativeLocaleUrl(lang, "#inicio")}
                         class="hover:text-teal-400 transition duration-300"
-                        >Inicio</a
+                        >{t("nav.home")}</a
                     >
                 </li>
                 <li>
                     <a
-                        href="/#servicios"
+                        href={getRelativeLocaleUrl(lang, "#servicios")}
                         class="hover:text-teal-400 transition duration-300"
-                        >Servicios</a
+                        >{t("nav.services")}</a
                     >
                 </li>
                 <li>
@@ -108,6 +114,8 @@
     <div
         class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 pt-8 border-t border-stone-800 text-center text-xs text-stone-500"
     >
-        &copy; {new Date().getFullYear()} Anahata Beauty Spa. Todos los derechos reservados.
+        &copy; {new Date().getFullYear()} Anahata Beauty Spa. {
+            t("footer.rights")
+        }
     </div>
 </footer>

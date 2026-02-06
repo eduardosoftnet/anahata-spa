@@ -1,22 +1,22 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import heroBg from "../assets/images/hero-bg.jpg";
-import aboutUsImg from "../assets/images/about-us.jpg";
-import { getServices } from "../data/services";
-import Partners from "../components/Partners.astro";
+import heroBg from "../../assets/images/hero-bg.jpg";
+import aboutUsImg from "../../assets/images/about-us.jpg";
+import { getServices } from "../../data/services";
+import Partners from "../../components/Partners.astro";
 import {
     getLangFromUrl,
     useTranslations,
     getRelativeLocaleUrl,
-} from "../i18n/utils";
+} from "../../i18n/utils";
 
-const lang = getLangFromUrl(Astro.url);
+const lang = "en";
 const t = useTranslations(lang);
 const services = getServices(lang);
 ---
 
-<Layout title="Anahata Beauty Spa | Bienestar y Relajación">
+<Layout title="Anahata Beauty Spa | Wellness & Relaxation">
     <main>
         <!-- Hero Section -->
         <section
@@ -28,7 +28,7 @@ const services = getServices(lang);
                 <div class="absolute inset-0 bg-stone-900/30 z-10"></div>
                 <Image
                     src={heroBg}
-                    alt="Ambiente de Spa Relajante"
+                    alt="Relaxing Spa Atmosphere"
                     width={2070}
                     height={1380}
                     class="w-full h-full object-cover"
@@ -131,7 +131,7 @@ const services = getServices(lang);
                         </div>
                         <Image
                             src={aboutUsImg}
-                            alt="Interior de Anahata Spa"
+                            alt="Inside Anahata Spa"
                             width={800}
                             height={1000}
                             class="relative rounded-2xl shadow-xl w-full object-cover h-[500px]"

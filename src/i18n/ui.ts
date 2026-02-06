@@ -1,0 +1,63 @@
+export const languages = {
+    es: 'Español',
+    en: 'English',
+};
+
+export const defaultLang = 'es';
+
+export const ui = {
+    es: {
+        'nav.home': 'Inicio',
+        'nav.services': 'Servicios',
+        'nav.about': 'Nosotros',
+        'nav.contact': 'Contáctanos',
+        'hero.subtitle': 'Tu santuario de paz y renovación personal.',
+        'hero.cta.services': 'Nuestros Servicios',
+        'hero.cta.contact': 'Contáctanos',
+        'intro.title': 'Bienvenido a Anahata',
+        'intro.desc': 'En el corazón de la ciudad, un refugio diseñado para armonizar tu cuerpo y mente. Nuestros tratamientos están inspirados en técnicas ancestrales para devolverte el equilibrio que mereces.',
+        'services.more': 'Ver más →',
+        'about.title': 'Nuestra Esencia',
+        'about.p1.1': 'En ',
+        'about.p1.2': 'Anahata Spa',
+        'about.p1.3': ', creemos que la verdadera belleza nace de la armonía interior. Nuestro nombre, inspirado en el chakra del corazón, refleja nuestra misión: crear un espacio donde el amor propio y el cuidado experto se encuentran.',
+        'about.p2': 'Cada terapeuta en nuestro equipo es un artesano del bienestar, dedicado a personalizar tu experiencia para asegurar que salgas renovado no solo físicamente, sino también espiritualmente.',
+        'stats.experience': 'Años de Experiencia',
+        'stats.clients': 'Clientes Satisfechos',
+        'footer.rights': 'Todos los derechos reservados.',
+        'footer.privacy': 'Política de Privacidad',
+        'footer.terms': 'Términos de Servicio',
+        'service.back': 'Volver a Servicios',
+        'service.treatments': 'Tratamientos Disponibles:',
+        'service.book': 'Reservar Cita',
+        'partners.title': 'Nuestros Aliados Comerciales',
+        'partners.subtitle': 'Trabajamos con las mejores marcas para asegurar tu bienestar'
+    },
+    en: {
+        'nav.home': 'Home',
+        'nav.services': 'Services',
+        'nav.about': 'About Us',
+        'nav.contact': 'Contact Us',
+        'hero.subtitle': 'Your sanctuary of peace and personal renewal.',
+        'hero.cta.services': 'Our Services',
+        'hero.cta.contact': 'Contact Us',
+        'intro.title': 'Welcome to Anahata',
+        'intro.desc': 'In the heart of the city, a retreat designed to harmonize your body and mind. Our treatments are inspired by ancient techniques to restore the balance you deserve.',
+        'services.more': 'See more →',
+        'about.title': 'Our Essence',
+        'about.p1.1': 'At ',
+        'about.p1.2': 'Anahata Spa',
+        'about.p1.3': ', we believe that true beauty is born from inner harmony. Our name, inspired by the heart chakra, reflects our mission: to create a space where self-love and expert care meet.',
+        'about.p2': 'Each therapist on our team is an artisan of well-being, dedicated to customizing your experience to ensure you leave renewed not only physically, but also spiritually.',
+        'stats.experience': 'Years of Experience',
+        'stats.clients': 'Satisfied Clients',
+        'footer.rights': 'All rights reserved.',
+        'footer.privacy': 'Privacy Policy',
+        'footer.terms': 'Terms of Service',
+        'service.back': 'Back to Services',
+        'service.treatments': 'Available Treatments:',
+        'service.book': 'Book Appointment',
+        'partners.title': 'Our Commercial Partners',
+        'partners.subtitle': 'We work with the best brands to ensure your well-being'
+    },
+} as const;

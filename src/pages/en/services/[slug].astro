@@ -1,30 +1,31 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import { servicesEs } from "../../data/services";
+import Layout from "../../../layouts/Layout.astro";
+import { getServices } from "../../../data/services";
 import {
     getLangFromUrl,
     useTranslations,
     getRelativeLocaleUrl,
-} from "../../i18n/utils";
+} from "../../../i18n/utils";
 
-// This is the default (Spanish) route
+const lang = "en";
+const t = useTranslations(lang);
+
 export async function getStaticPaths() {
-    return servicesEs.map((service) => ({
+    const services = getServices("en");
+    return services.map((service) => ({
         params: { slug: service.slug },
         props: { service },
     }));
 }
 
 const { service } = Astro.props;
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 
-// Find the corresponding English service
-import { servicesEn } from "../../data/services";
-const translatedService = servicesEn.find((s) => s.id === service.id);
+// Find the corresponding Spanish service
+import { servicesEs } from "../../../data/services";
+const translatedService = servicesEs.find((s) => s.id === service.id);
 const translatedPaths = translatedService
     ? {
-          en: `/en/services/${translatedService.slug}`,
+          es: `/services/${translatedService.slug}`,
       }
     : {};
 ---
