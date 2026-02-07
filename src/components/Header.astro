@@ -158,10 +158,28 @@ const t = useTranslations(lang);
             // Close menu when clicking a link
             const links = menu.querySelectorAll("a");
             links.forEach((link) => {
-                link.addEventListener("click", () => {
-                    menu.classList.add("max-h-0", "opacity-0", "invisible");
-                    menu.classList.remove("max-h-96", "opacity-100", "visible");
-                    btn.setAttribute("aria-expanded", "false");
+                link.addEventListener("click", (e) => {
+                    const href = link.getAttribute("href");
+                    const currentPath = window.location.pathname;
+
+                    // Only close immediately if it's an anchor link on the same page
+                    // or if it's explicitly just a hash
+                    const isAnchor =
+                        href &&
+                        (href.startsWith("#") ||
+                            (href.includes(currentPath) && href.includes("#")));
+
+                    if (isAnchor) {
+                        menu.classList.add("max-h-0", "opacity-0", "invisible");
+                        menu.classList.remove(
+                            "max-h-96",
+                            "opacity-100",
+                            "visible",
+                        );
+                        btn.setAttribute("aria-expanded", "false");
+                    }
+                    // For other links (new pages), let the view transition handle the "closing"
+                    // by replacing the component entirely. This avoids the flicker of closing -> navigating.
                 });
             });
         }
