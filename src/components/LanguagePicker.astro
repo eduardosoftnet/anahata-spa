@@ -38,23 +38,120 @@ function getPathProps(locale: string) {
 
 <div class="flex items-center space-x-1 text-sm font-medium">
     {
-        Object.entries(languages).map(([label, name]) => (
-            <a
-                href={getPathProps(label)}
-                class:list={[
-                    "transition-colors duration-200 p-2 rounded-md",
-                    label === lang
-                        ? theme === "dark"
-                            ? "text-white font-bold bg-white/10"
-                            : "text-teal-700 font-bold bg-teal-50"
-                        : theme === "dark"
-                          ? "text-stone-300 hover:text-white hover:bg-white/5"
-                          : "text-stone-500 hover:text-teal-600 hover:bg-stone-100",
-                ]}
-                aria-label={`Switch to ${name}`}
-            >
-                {label.toUpperCase()}
-            </a>
-        ))
+        Object.entries(languages).map(([label, name]) => {
+            const baseHref = getPathProps(label);
+            return (
+                <a
+                    href={baseHref}
+                    data-base-href={baseHref}
+                    class:list={[
+                        "lang-link transition-colors duration-200 p-2 rounded-md",
+                        label === lang
+                            ? theme === "dark"
+                                ? "text-white font-bold bg-white/10"
+                                : "text-teal-700 font-bold bg-teal-50"
+                            : theme === "dark"
+                              ? "text-stone-300 hover:text-white hover:bg-white/5"
+                              : "text-stone-500 hover:text-teal-600 hover:bg-stone-100",
+                    ]}
+                    aria-label={`Switch to ${name}`}
+                >
+                    {label.toUpperCase()}
+                </a>
+            );
+        })
     }
 </div>
+
+<script>
+    function updateLanguageLinks() {
+        const langLinks = document.querySelectorAll(
+            "a.lang-link",
+        ) as NodeListOf<HTMLAnchorElement>;
+        const sections = document.querySelectorAll(
+            "section[id]",
+        ) as NodeListOf<HTMLElement>;
+
+        if (langLinks.length === 0 || sections.length === 0) return;
+
+        // Listen for scroll updates to change hash
+        const onScroll = () => {
+            let currentId = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                // Offset for fixed header (approx 150px safety margin)
+                if (window.scrollY >= sectionTop - 150) {
+                    currentId = section.id;
+                }
+            });
+
+            langLinks.forEach((link) => {
+                const baseHref = link.getAttribute("data-base-href");
+                if (baseHref) {
+                    // Start with base href
+                    let newHref = baseHref;
+
+                    // If we have a current section ID
+                    if (currentId) {
+                        const validIds = ["inicio", "servicios", "nosotros"];
+                        if (validIds.includes(currentId)) {
+                            // Handle trailing slash to avoid //
+                            const cleanBase =
+                                baseHref.endsWith("/") && baseHref !== "/"
+                                    ? baseHref.slice(0, -1)
+                                    : baseHref;
+                            newHref = `${cleanBase}#${currentId}`;
+                        }
+                    }
+
+                    // Only update if changed
+                    if (link.getAttribute("href") !== newHref) {
+                        link.setAttribute("href", newHref);
+                    }
+                }
+            });
+        };
+
+        window.addEventListener("scroll", onScroll);
+        // Initial check
+        onScroll();
+
+        // New logic: Click handlers for seamless transition
+        langLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                // Store precise scroll position
+                sessionStorage.setItem(
+                    "lang_switch_scroll",
+                    window.scrollY.toString(),
+                );
+            });
+        });
+    }
+
+    // Run on invalidation/load for View Transitions
+    document.addEventListener("astro:page-load", () => {
+        // 1. Restore scroll immediately if stored
+        const storedScroll = sessionStorage.getItem("lang_switch_scroll");
+        if (storedScroll) {
+            // Temporarily disable global smooth scroll for this restoration
+            // This overrides the 'scroll-smooth' class on html
+            document.documentElement.style.scrollBehavior = "auto";
+
+            window.scrollTo({
+                top: parseInt(storedScroll),
+                behavior: "instant",
+            });
+            sessionStorage.removeItem("lang_switch_scroll");
+
+            // Restore smooth scroll after a tick
+            // We verify if we need to set it back to 'smooth' or just clear the inline style
+            // If the class is there, clearing inline style returns to CSS value
+            requestAnimationFrame(() => {
+                document.documentElement.style.scrollBehavior = "";
+            });
+        }
+
+        // 2. Initialize dynamic checks
+        updateLanguageLinks();
+    });
+</script>
